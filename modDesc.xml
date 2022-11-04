@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<modDesc descVersion="53">
+<modDesc descVersion="71">
 	<author>Royal Modding</author>
-	<version>1.2.0.0</version>
+	<contributor>Royal Modding</contributor>
+	<version>0.1.0.0</version>
 	<title>
 		<en>Map Objects Hider</en>
 	</title>
