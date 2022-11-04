@@ -78,20 +78,20 @@ Faites attention :
 	<multiplayer supported="true" />
 	<iconFilename>icon.png</iconFilename>
 	<extraSourceFiles>
-		<sourceFile filename="lib/utility/Main.lua" />
-		<sourceFile filename="lib/rmod/Main.lua" />
-		<sourceFile filename="lib/rset/Main.lua" />
+		<!-- <sourceFile filename="lib/utility/Main.lua" /> -->
+		<!-- <sourceFile filename="lib/rmod/Main.lua" /> -->
+		<!-- <sourceFile filename="lib/rset/Main.lua" /> -->
 		<sourceFile filename="mapObjectsHider.lua" />
-		<sourceFile filename="playerExtension.lua" />
-		<sourceFile filename="animatedMapObjectExtension.lua" />
-		<sourceFile filename="sellPlaceableEventExtension.lua" />
-		<sourceFile filename="events/objectHideRequest.lua" />
-		<sourceFile filename="events/hideDecollideNode.lua" />
-		<sourceFile filename="events/deleteSplitShapeEvent.lua" />
-		<sourceFile filename="events/requestObjectsListEvent.lua" />
-		<sourceFile filename="events/sendObjectsListEvent.lua" />
-		<sourceFile filename="events/objectShowRequestEvent.lua" />
-		<sourceFile filename="events/showCollideNodeEvent.lua" />
+		<!-- <sourceFile filename="playerExtension.lua" /> -->
+		<!-- <sourceFile filename="animatedMapObjectExtension.lua" /> -->
+		<!-- <sourceFile filename="sellPlaceableEventExtension.lua" /> -->
+		<!-- <sourceFile filename="events/objectHideRequest.lua" /> -->
+		<!-- <sourceFile filename="events/hideDecollideNode.lua" /> -->
+		<!-- <sourceFile filename="events/deleteSplitShapeEvent.lua" /> -->
+		<!-- <sourceFile filename="events/requestObjectsListEvent.lua" /> -->
+		<!-- <sourceFile filename="events/sendObjectsListEvent.lua" /> -->
+		<!-- <sourceFile filename="events/objectShowRequestEvent.lua" /> -->
+		<!-- <sourceFile filename="events/showCollideNodeEvent.lua" /> -->
 	</extraSourceFiles>
 
 	<actions>
