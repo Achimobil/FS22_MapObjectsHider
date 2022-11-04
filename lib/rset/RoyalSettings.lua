@@ -33,7 +33,7 @@ RoyalSettings.OWNERS.USER = 2
 
 ---@param gameEnv any
 function RoyalSettings:initialize(gameEnv)
-    g_logManager:devInfo("Initializing Royal Settings from %s", self.loadingModName)
+    Logging.devInfo("Initializing Royal Settings from %s", self.loadingModName)
     gameEnv = gameEnv or getfenv(0)
 
     self.registrationEnabled = true
@@ -93,7 +93,7 @@ function RoyalSettings:initialize(gameEnv)
     local time = getTimeSec()
     g_inputBinding:load()
 
-    g_logManager:devInfo("[Royal Settings] InputBinding reloaded in %.1f ms", (getTimeSec() - time) * 1000)
+    Logging.devInfo("[Royal Settings] InputBinding reloaded in %.1f ms", (getTimeSec() - time) * 1000)
 end
 
 ---@param inputManager InputBinding
@@ -220,10 +220,10 @@ function RoyalSettings:registerMod(modName, icon, description)
             self.mods[modName] = RoyalSettingsMod.new(modName, icon, description)
             return self.mods[modName]
         else
-            g_logManager:devError("[Royal Settings] Tab for '%s' is already registered", modName)
+            Logging.devError("[Royal Settings] Tab for '%s' is already registered", modName)
         end
     else
-        g_logManager:devError("[Royal Settings] Mods / tabs registration isn't allowd at this time")
+        Logging.devError("[Royal Settings] Mods / tabs registration isn't allowd at this time")
     end
 end
 
@@ -253,16 +253,16 @@ function RoyalSettings:registerSetting(modName, settingName, settingType, settin
                         return self.settings[key]
                     end
                 else
-                    g_logManager:devError("[Royal Settings] Setting with key '%s' is already registered", key)
+                    Logging.devError("[Royal Settings] Setting with key '%s' is already registered", key)
                 end
             else
-                g_logManager:devError("[Royal Settings] Can't find a proper setting class for (%d, %d) type / owner combination", settingType, settingOwner)
+                Logging.devError("[Royal Settings] Can't find a proper setting class for (%d, %d) type / owner combination", settingType, settingOwner)
             end
         else
-            g_logManager:devError("[Royal Settings] Tab for '%s' isn't still registered", modName)
+            Logging.devError("[Royal Settings] Tab for '%s' isn't still registered", modName)
         end
     else
-        g_logManager:devError("[Royal Settings] Settings registration isn't allowd at this time")
+        Logging.devError("[Royal Settings] Settings registration isn't allowd at this time")
     end
 end
 
@@ -307,7 +307,7 @@ function RoyalSettings.createGui(xmlFile, name, controller, isFrame)
             g_gui:addScreen(controller:class(), controller, gui)
         end
     else
-        g_logManager:error("Could not use gui-config '%s'!", xmlFile)
+        Logging.error("Could not use gui-config '%s'!", xmlFile)
     end
 
     return gui

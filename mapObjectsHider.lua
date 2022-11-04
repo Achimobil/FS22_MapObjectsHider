@@ -172,7 +172,7 @@ function MapObjectsHider:onLoadSavegame(savegameDirectory, savegameIndex)
             local savegameUpdate = false
             local savegameRevision = getXMLInt(xmlFile, "mapObjectsHider#revision") or 0
             if savegameRevision < self.revision then
-                g_logManager:devInfo("[%s] Updating savegame from revision %d to %d", self.name, savegameRevision, self.revision)
+                Logging.devInfo("[%s] Updating savegame from revision %d to %d", self.name, savegameRevision, self.revision)
                 savegameUpdate = true
             end
             local savegameMd5 = getXMLBool(xmlFile, "mapObjectsHider#md5") or false
@@ -224,8 +224,8 @@ function MapObjectsHider:onLoadSavegame(savegameDirectory, savegameIndex)
                         else
                             self:printObjectLoadingError(object.name)
                             if self.debug then
-                                g_logManager:devInfo("  Old: %s", object.hash)
-                                g_logManager:devInfo("  New: %s", newHash)
+                                Logging.devInfo("  Old: %s", object.hash)
+                                Logging.devInfo("  New: %s", newHash)
                             end
                         end
                     else
@@ -331,7 +331,7 @@ end
 
 ---@param name string
 function MapObjectsHider:printObjectLoadingError(name)
-    g_logManager:warning("[%s] Can't find %s, something may have changed in the map hierarchy, the object will be restored.", self.name, name)
+    Logging.warning("[%s] Can't find %s, something may have changed in the map hierarchy, the object will be restored.", self.name, name)
 end
 
 ---@param objectId integer
