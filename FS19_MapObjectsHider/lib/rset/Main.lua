@@ -9,6 +9,6 @@
 function InitRoyalSettings(libDirectory)
     source(Utils.getFilename("RoyalSettings.lua", libDirectory))
     RoyalSettings.libDirectory = libDirectory
-    Logging.devInfo("Royal Settings loaded successfully by " .. g_currentModName)
+    g_logManager:devInfo("Royal Settings loaded successfully by " .. g_currentModName)
     return true
 end

@@ -1,112 +1,17 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <modDesc descVersion="71">
-	<author>Royal Modding</author>
+	<author>Achimobil</author>
 	<contributor>Royal Modding</contributor>
 	<version>0.1.0.0</version>
 	<title>
-		<en>Map Objects Hider</en>
+		<de>Map Objects Hider</de>
 	</title>
 	<description>
-		<en>
-			<![CDATA[
-Have you ever felt like you can't join two fields because of a rock that's right in the middle of them, or you can't build a shed because of some objects that take up space?
-These will no longer be problems thanks to "Map Objects Hider", this mod will let you permanently remove objects, placeables, trees and gates from your map.
-You can open the mod settings panel by pressing RSHIFT + R
-
-Changelog 1.2.0.0:
-- Added new panel where all hidden objects are listed and can be restored
-- Added ability to hide gates and all map animated objects
-- Added ability to remove trees and logs
-- Added many new translations
-- Improved mod performances
-- Improved objects handling
-- Fixed issue with 'Hof Bergmann' map + 'Seasons' mod
-- Fixed placeable objects selling error
-
-
-Be careful:
-- Not all object types can be removed.
-- If you change the hierarchy of objects on the map (for example by making changes from GIANTS Editor) some objects may reappear and have to be removed again.
-- If a mod map is not built correctly, removing some trees may cause the above problem.
-]]>
-		</en>
-		<de>
-			<![CDATA[
-Hatten Sie schon einmal das Gefühl, dass Sie zwei Felder nicht miteinander verbinden können, weil ein Felsen genau in der Mitte liegt, oder dass Sie einen Schuppen nicht bauen können, weil einige Objekte Platz wegnehmen?
-Mit "Map Objects Hider" ist das kein Problem mehr, denn mit diesem Mod können Sie dekorative Objekte und platzierbare Gegenstände auf Ihren Karten dauerhaft entfernen.
-
-Changelog 1.2.0.0:
-- Added new panel where all hidden objects are listed and can be restored
-- Added ability to hide gates and all map animated objects
-- Added ability to remove trees and logs
-- Added many new translations
-- Improved mod performances
-- Improved objects handling
-- Fixed issue with 'Hof Bergmann' map + 'Seasons' mod
-- Fixed placeable objects selling error
-
-
-Aber Vorsicht!
-- Nicht alle Objekttypen können entfernt werden.
-- Wenn Sie die Hierarchie der Objekte auf der Karte verändern (z.B. durch Änderungen im GIANTS Editor), können einige Objekte wieder auftauchen und müssen erneut entfernt werden.
-- Wenn eine Mod-Map nicht korrekt aufgebaut ist, kann das Entfernen einiger Bäume das oben genannte Problem verursachen.
-]]>
-		</de>
-		<fr>
-			<![CDATA[
-Avez-vous déjà eu l'impression que vous ne pouvez pas joindre deux champs à cause d'un rocher qui se trouve en plein milieu, ou que vous ne pouvez pas construire un hangar à cause de certains objets qui prennent de l'espace ?
-Ces problèmes ne se poseront plus grâce à "Map Objects Hider", ce mod vous permettra de supprimer définitivement les objets décoratifs et les objets pouvant être placés sur vos cartes.
-
-Changelog 1.2.0.0:
-- Added new panel where all hidden objects are listed and can be restored
-- Added ability to hide gates and all map animated objects
-- Added ability to remove trees and logs
-- Added many new translations
-- Improved mod performances
-- Improved objects handling
-- Fixed issue with 'Hof Bergmann' map + 'Seasons' mod
-- Fixed placeable objects selling error
-
-
-Faites attention :
-- Tous les types d'objets ne peuvent pas être supprimés.
-- Si vous modifiez la hiérarchie des objets sur la carte (par exemple en effectuant des changements à partir de l'éditeur GIANTS), certains objets peuvent réapparaître et doivent être supprimés à nouveau.
-- Si une carte de mod n'est pas construite correctement, la suppression de certains arbres peut causer le problème ci-dessus.
-]]>
-		</fr>
+		<de><![CDATA[description]]></de>
 	</description>
-	<multiplayer supported="true" />
+	<multiplayer supported="true"/>
 	<iconFilename>icon.png</iconFilename>
 	<extraSourceFiles>
-		<!-- <sourceFile filename="lib/utility/Main.lua" /> -->
-		<!-- <sourceFile filename="lib/rmod/Main.lua" /> -->
-		<!-- <sourceFile filename="lib/rset/Main.lua" /> -->
-		<sourceFile filename="mapObjectsHider.lua" />
-		<!-- <sourceFile filename="playerExtension.lua" /> -->
-		<!-- <sourceFile filename="animatedMapObjectExtension.lua" /> -->
-		<!-- <sourceFile filename="sellPlaceableEventExtension.lua" /> -->
-		<!-- <sourceFile filename="events/objectHideRequest.lua" /> -->
-		<!-- <sourceFile filename="events/hideDecollideNode.lua" /> -->
-		<!-- <sourceFile filename="events/deleteSplitShapeEvent.lua" /> -->
-		<!-- <sourceFile filename="events/requestObjectsListEvent.lua" /> -->
-		<!-- <sourceFile filename="events/sendObjectsListEvent.lua" /> -->
-		<!-- <sourceFile filename="events/objectShowRequestEvent.lua" /> -->
-		<!-- <sourceFile filename="events/showCollideNodeEvent.lua" /> -->
+		<sourceFile filename="mapObjectsHider.lua"/>
 	</extraSourceFiles>
-
-	<actions>
-		<action name="MAP_OBJECT_HIDER_HIDE" axisType="HALF" />
-		<action name="MAP_OBJECT_HIDER_GUI" axisType="HALF" />
-	</actions>
-
-	<inputBinding>
-		<actionBinding action="MAP_OBJECT_HIDER_HIDE">
-			<binding device="KB_MOUSE_DEFAULT" input="KEY_h" />
-		</actionBinding>
-		<actionBinding action="MAP_OBJECT_HIDER_GUI">
-			<binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_h" />
-		</actionBinding>
-	</inputBinding>
-
-	<l10n filenamePrefix="translations/l10n" />
 </modDesc>

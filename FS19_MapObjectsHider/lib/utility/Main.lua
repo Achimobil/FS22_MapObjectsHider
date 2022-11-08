@@ -17,6 +17,6 @@ function InitRoyalUtility(utilityDirectory)
     source(Utils.getFilename("Array.lua", utilityDirectory))
     source(Utils.getFilename("FadeEffect.lua", utilityDirectory))
     source(Utils.getFilename("DelayedCallBack.lua", utilityDirectory))
-    Logging.devInfo("Royal Utility loaded successfully by " .. g_currentModName)
+    g_logManager:devInfo("Royal Utility loaded successfully by " .. g_currentModName)
     return true
 end
