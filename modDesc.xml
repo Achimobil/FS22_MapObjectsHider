@@ -3,15 +3,40 @@
 	<author>Achimobil</author>
 	<contributor>Royal Modding</contributor>
 	<version>0.1.0.0</version>
+	
 	<title>
 		<de>Map Objects Hider</de>
 	</title>
+	
 	<description>
 		<de><![CDATA[description]]></de>
 	</description>
+	
 	<multiplayer supported="true"/>
 	<iconFilename>icon.png</iconFilename>
+	
 	<extraSourceFiles>
 		<sourceFile filename="mapObjectsHider.lua"/>
+		<sourceFile filename="events/hideDecollideNode.lua" />
+		<sourceFile filename="scripts/playerExtension.lua" />
+		<sourceFile filename="scripts/DebugUtility.lua" />
+		<sourceFile filename="scripts/EntityUtility.lua" />
+		<sourceFile filename="scripts/Utility.lua" />
 	</extraSourceFiles>
+
+	<actions>
+		<action name="MAP_OBJECT_HIDER_HIDE" axisType="HALF" />
+		<action name="MAP_OBJECT_HIDER_GUI" axisType="HALF" />
+	</actions>
+
+	<inputBinding>
+		<actionBinding action="MAP_OBJECT_HIDER_HIDE">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_h" />
+		</actionBinding>
+		<actionBinding action="MAP_OBJECT_HIDER_GUI">
+			<binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_h" />
+		</actionBinding>
+	</inputBinding>
+	
+	<l10n filenamePrefix="translations/l10n" />
 </modDesc>
