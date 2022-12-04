@@ -17,6 +17,7 @@
 	
 	<extraSourceFiles>
 		<sourceFile filename="mapObjectsHider.lua"/>
+		<sourceFile filename="events/deleteSplitShapeEvent.lua" />
 		<sourceFile filename="events/hideDecollideNode.lua" />
 		<sourceFile filename="scripts/playerExtension.lua" />
 		<sourceFile filename="scripts/DebugUtility.lua" />

@@ -195,6 +195,6 @@ end
 ---@param yes boolean
 function PlayerExtension:deleteSplitShapeDialogCallback(yes)
 	if yes and self.raycastHideObjectBackup ~= nil and self.raycastHideObjectBackup.objectId ~= nil then
-		g_client:getServerConnection():sendEvent(DeleteSplitShapeEvent:new(self.raycastHideObjectBackup.objectId))
+		g_client:getServerConnection():sendEvent(DeleteSplitShapeEvent.new(self.raycastHideObjectBackup.objectId))
 	end
 end
