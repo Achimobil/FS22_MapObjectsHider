@@ -10,5 +10,6 @@
 		<text name="moh_dialog_title" 					text="Map Objects Hider"/>
 		<text name="moh_dialog_text" 					text="Sind Sie sicher, dass Sie %s ausblenden möchten?"/>
 		<text name="moh_delete_split_shape_dialog_text" text="Möchten Sie diesen Baum wirklich entfernen?"/>
+		<text name="moh_sell_dialog_text"				text="Sind Sie sicher, dass Sie %s verkaufen möchten?" />
 	</texts>
 </l10n>

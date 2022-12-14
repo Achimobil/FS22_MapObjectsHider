@@ -188,7 +188,7 @@ end
 ---@param yes boolean
 function PlayerExtension:sellObjectDialogCallback(yes)
 	if yes and self.raycastHideObjectBackup ~= nil and self.raycastHideObjectBackup.object ~= nil then
-		g_client:getServerConnection():sendEvent(SellPlaceableEvent:new(self.raycastHideObjectBackup.object))
+		g_client:getServerConnection():sendEvent(SellPlaceableEvent.new(self.raycastHideObjectBackup.object, false, true))
 	end
 end
 
