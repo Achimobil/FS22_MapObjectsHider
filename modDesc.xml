@@ -23,6 +23,7 @@
 		<sourceFile filename="scripts/DebugUtility.lua" />
 		<sourceFile filename="scripts/EntityUtility.lua" />
 		<sourceFile filename="scripts/Utility.lua" />
+		<sourceFile filename="scripts/StringUtility.lua" />
 	</extraSourceFiles>
 
 	<actions>

@@ -108,7 +108,8 @@ end
 ---@param md5 boolean
 ---@return string hash hash of the node hierarchy
 function EntityUtility.getNodeHierarchyHash(node, parent, md5)
-    if note == nil or not type(node) == "number" or not entityExists(node) or parent == nil or not type(parent) == "number" or not entityExists(parent) then
+	MapObjectsHider.print("EntityUtility.getNodeHierarchyHash(%s,%s,%s)", tostring(node), tostring(parent), tostring(md5));
+    if node == nil or not type(node) == "number" or not entityExists(node) or parent == nil or not type(parent) == "number" or not entityExists(parent) then
         return string.format("Invalid hash node:%s parent:%s", node, parent)
     end
     local hash = ""
