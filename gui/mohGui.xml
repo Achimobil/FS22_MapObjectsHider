@@ -2,9 +2,10 @@
 <GUI onOpen="onOpen" onClose="onClose" onCreate="onCreate">
     <GuiElement type="bitmap" profile="uiFullInGameBackground" />
     <!-- Body - Central -->
-    <GuiElement type="bitmap" profile="uiElementContainerFullScreenSpanning" size="1920px 1080px">
-        <GuiElement type="empty" profile="ingameMenuFrameHeaderPanel" position="145px -26px">
-            <GuiElement type="text" profile="ingameMenuFrameHeaderText" text="$l10n_moh_gui_title" />
+    <GuiElement type="bitmap" profile="uiElementContainerFullScreen">
+	  <GuiElement type="bitmap" profile="uiElementCenter" size="1660px 828px">
+        <GuiElement type="bitmap" profile="headerBoxDocked">
+            <GuiElement type="text" profile="headerText" text="$l10n_moh_gui_title" />
         </GuiElement>
 
         <GuiElement type="empty" profile="mohIngameMenuSettingsBox">
@@ -17,8 +18,8 @@
                     </GuiElement>
                 </GuiElement>
 
-                <GuiElement type="bitmap" profile="mohListSliderBackground">
-                    <GuiElement type="slider" profile="mohListSlider" dataElementId="mohList" />
+                <GuiElement type="threePartBitmap" profile="verticalListSliderRightDocked">
+                    <GuiElement type="slider" profile="verticalListSliderBar" dataElementId="mohList" handleFocus="false" />
                 </GuiElement>
 
                 <GuiElement type="bitmap" profile="mohListEmptyBox" id="mohLHOBox">
@@ -33,6 +34,7 @@
                 <GuiElement type="camera" profile="mohCamera" id="mohCamera" />
             </GuiElement>
         </GuiElement>
+      </GuiElement>
     </GuiElement>
 
     <GuiElement type="flowLayout" profile="buttonBoxDocked" screenAlign="bottomLeft" positionOrigin="bottomLeft" position="130px 77px">

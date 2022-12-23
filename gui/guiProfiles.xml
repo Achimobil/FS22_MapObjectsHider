@@ -86,12 +86,12 @@
         <Value name="screenAlign" value="topLeft" />
         <Value name="positionOrigin" value="topLeft" />
         <Value name="size" value="1660px 828px" />
-        <Value name="position" value="130px -110px" />
+        <Value name="position" value="0px 0px" />
     </Profile>
 
     <Profile name="mohListBox" extends="emptyPanel" with="lightFrame">
         <Value name="size" value="528px 772px" />
-        <Value name="position" value="25px -25px" />
+        <Value name="position" value="5px 30px" />
         <Value name="screenAlign" value="topLeft" />
         <Value name="positionOrigin" value="topLeft" />
     </Profile>
@@ -172,7 +172,7 @@
 
     <Profile name="mohCameraBox" extends="emptyPanel" with="lightFrame">
         <Value name="size" value="1057px 772px" />
-        <Value name="position" value="600px -25px" />
+        <Value name="position" value="600px 30px" />
         <Value name="screenAlign" value="topRight" />
         <Value name="positionOrigin" value="topRight" />
     </Profile>
