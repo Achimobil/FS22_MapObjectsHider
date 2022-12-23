@@ -19,6 +19,11 @@
 		<sourceFile filename="mapObjectsHider.lua"/>
 		<sourceFile filename="events/deleteSplitShapeEvent.lua" />
 		<sourceFile filename="events/hideDecollideNode.lua" />
+		<sourceFile filename="events/requestObjectsListEvent.lua" />
+		<sourceFile filename="events/sendObjectsListEvent.lua" />
+		<sourceFile filename="events/objectShowRequestEvent.lua" />
+		<sourceFile filename="events/showCollideNodeEvent.lua" />
+		<sourceFile filename="scripts/ArrayUtility.lua" />
 		<sourceFile filename="scripts/playerExtension.lua" />
 		<sourceFile filename="scripts/DebugUtility.lua" />
 		<sourceFile filename="scripts/EntityUtility.lua" />

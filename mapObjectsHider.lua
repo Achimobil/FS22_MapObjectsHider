@@ -22,6 +22,7 @@ MapObjectsHider.sellConfirmEnabled = true
 MapObjectsHider.deleteSplitShapeConfirmEnabled = true
 MapObjectsHider.guiShowHelpEnabled = true
 MapObjectsHider.hiddenObjects = {}
+MapObjectsHider.directory = g_currentModDirectory
 
 function MapObjectsHider.print(text, ...)
 	if MapObjectsHider.debug then
@@ -74,6 +75,14 @@ function MapObjectsHider:init()
 	
 	-- speichern/laden mit dem savegame
 	FSCareerMissionInfo.saveToXMLFile = Utils.appendedFunction(FSCareerMissionInfo.saveToXMLFile, MapObjectsHider.saveToXMLFile)
+	
+	-- Gui elemente laden
+    self.guiDirectory = Utils.getFilename("gui/", self.directory)
+    source(Utils.getFilename("elements/cameraElement.lua", self.guiDirectory))
+    source(Utils.getFilename("mohGui.lua", self.guiDirectory))
+    g_gui:loadProfiles(self.guiDirectory .. "guiProfiles.xml")
+    self.gui = g_gui:loadGui(self.guiDirectory .. "mohGui.xml", "MapObjectsHiderGui", MOHGui.new())
+
 end
 
 function MapObjectsHider:loadMap(filename)
@@ -134,7 +143,7 @@ function MapObjectsHider:loadFromXML()
 			local savegameUpdate = false
 			local savegameRevision = getXMLInt(xmlFile, "mapObjectsHider#revision") or 0
 			if savegameRevision < self.revision then
-				g_logManager:devInfo("[%s] Updating savegame from revision %d to %d", self.name, savegameRevision, self.revision)
+				Logging:devInfo("[%s] Updating savegame from revision %d to %d", self.name, savegameRevision, self.revision)
 				savegameUpdate = true
 			end
 			local savegameMd5 = getXMLBool(xmlFile, "mapObjectsHider#md5") or false
@@ -186,8 +195,8 @@ function MapObjectsHider:loadFromXML()
 						else
 							self:printObjectLoadingError(object.name)
 							if self.debug then
-								g_logManager:devInfo("  Old: %s", object.hash)
-								g_logManager:devInfo("  New: %s", newHash)
+								Logging:devInfo("  Old: %s", object.hash)
+								Logging:devInfo("  New: %s", newHash)
 							end
 						end
 					else
@@ -301,6 +310,32 @@ function MapObjectsHider:hideObject(objectId, name, hiderPlayerName)
 		ObjectHideRequestEvent.sendToServer(objectId)
 	end
 end
+---@param objectIndex string
+
+function MapObjectsHider:showObject(objectIndex)
+    if g_server ~= nil then
+        ArrayUtility.remove(
+            self.hiddenObjects,
+            ---@param hiddenObjects HideObject[]
+            ---@param index integer
+            ---@return boolean
+            function(hiddenObjects, index)
+                local hiddenObject = hiddenObjects[index]
+                if hiddenObject.index == objectIndex then
+                    -- inviare evento di ripristino
+                    self:showNode(hiddenObject.id)
+                    ShowCollideNodeEvent.sendToClients(true, hiddenObject.index)
+                    for _, col in pairs(hiddenObject.collisions) do
+                        self:collideNode(col.id, col.rigidBodyType)
+                        ShowCollideNodeEvent.sendToClients(false, col.index, col.rigidBodyType)
+                    end
+                    return true
+                end
+                return false
+            end
+        )
+    end
+end
 
 ---@param objectId integer
 ---@param objectName string
@@ -381,16 +416,21 @@ function MapObjectsHider:decollideNode(nodeId)
 	setRigidBodyType(nodeId, RigidBodyType.NONE)
 end
 
--- function MapObjectsHider:update(dt)
-	-- Logging.info("%s:update(dt)", self.metadata.name)
--- end
+---@param nodeId integer
+function MapObjectsHider:showNode(nodeId)
+    setVisibility(nodeId, true)
+end
 
--- function MapObjectsHider:deleteMap()
-	-- Logging.info("%s:deleteMap()", self.metadata.name)
--- end
+---@param nodeId integer
+---@param rigidBodyType string
+function MapObjectsHider:collideNode(nodeId, rigidBodyType)
+    setRigidBodyType(nodeId, rigidBodyType)
+end
 
--- function MapObjectsHider:draw()
-	-- Logging.info("%s:draw(), self.metadata.name")
--- end
+function MapObjectsHider:openGui()
+	if not self.gui.target:getIsOpen() then
+		g_gui:showGui(self.gui.name)
+	end
+end
 
 addModEventListener(MapObjectsHider);
