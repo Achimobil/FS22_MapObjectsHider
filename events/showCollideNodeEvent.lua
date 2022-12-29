@@ -32,7 +32,7 @@ function ShowCollideNodeEvent:writeStream(streamId)
     streamWriteString(streamId, self.objectIndex)
     streamWriteBool(streamId, self.show)
     if not self.show then
-        streamWriteString(streamId, self.rigidBodyType)
+        streamWriteInt32(streamId, self.rigidBodyType)
     end
 end
 
@@ -42,7 +42,7 @@ function ShowCollideNodeEvent:readStream(streamId, connection)
     self.objectIndex = streamReadString(streamId)
     self.show = streamReadBool(streamId)
     if not self.show then
-        self.rigidBodyType = streamReadString(streamId)
+        self.rigidBodyType = streamReadInt32(streamId)
     end
     self:run(connection)
 end

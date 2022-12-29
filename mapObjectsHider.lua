@@ -83,6 +83,8 @@ function MapObjectsHider:init()
     g_gui:loadProfiles(self.guiDirectory .. "guiProfiles.xml")
     self.gui = g_gui:loadGui(self.guiDirectory .. "mohGui.xml", "MapObjectsHiderGui", MOHGui.new())
 
+	-- damit beim joinen im MP die einstellungen geholt werden senden wir ein event dass die einstellungen dann an alle schickt
+	FSBaseMission.onConnectionFinishedLoading = Utils.overwrittenFunction(FSBaseMission.onConnectionFinishedLoading, MapObjectsHider.loadSettingsFromServer)
 end
 
 function MapObjectsHider:loadMap(filename)
@@ -292,6 +294,7 @@ end
 ---@param name string
 ---@param hiderPlayerName string
 function MapObjectsHider:hideObject(objectId, name, hiderPlayerName)
+	MapObjectsHider.print("MapObjectsHider:hideObject(%s, %s, %s)", objectId, name, hiderPlayerName);
 	if g_server ~= nil then
 		local objectName = name or getName(objectId)
 
@@ -431,6 +434,16 @@ function MapObjectsHider:openGui()
 	if not self.gui.target:getIsOpen() then
 		g_gui:showGui(self.gui.name)
 	end
+end
+
+function MapObjectsHider.loadSettingsFromServer(baseMission, superFunc, connection, x, y, z, viewDistanceCoeff)
+	
+	-- beim connecten auf den Server wird dieses auf dem Server aufgerufen und wir senden die auf dem Server stehenden daten an den neuen client
+	MapObjectsHider.print("loadSettingsFromServer(%s, %s, %s, %s, %s, %s, %s)", baseMission, superFunc, connection, x, y, z, viewDistanceCoeff);
+	
+	superFunc(baseMission, connection, x, y, z, viewDistanceCoeff)
+	
+	connection:sendEvent(LoadMapObjectsHiderDataResult.new(), false)
 end
 
 addModEventListener(MapObjectsHider);
