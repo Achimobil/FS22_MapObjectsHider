@@ -248,8 +248,21 @@ function MapObjectsHider:getRealHideObject(objectId)
 	-- end
 
 	-- try to intercept big sized objects with LOD such as houses
-	if getName(getParent(objectId)) == "LOD0" then
+	if getName(getParent(objectId)) == "LOD0" or getName(getParent(objectId)) == "LOD1" then
 		local rootNode = getParent(getParent(objectId))
+		return rootNode, getName(rootNode)
+	end
+	
+	if getName(objectId) == "LOD0" or getName(objectId) == "LOD1" then
+		local rootNode = getParent(objectId)
+		return rootNode, getName(rootNode)
+	end
+	
+	-- lockedgroups als grandpa should be used
+	local parent = getParent(objectId)
+	
+	if getIsLockedGroup(getParent(parent)) then
+		local rootNode = getParent(parent)
 		return rootNode, getName(rootNode)
 	end
 
@@ -257,7 +270,6 @@ function MapObjectsHider:getRealHideObject(objectId)
 	local id = nil
 
 	-- try to intercept medium sized objects such as electric cabins
-	local parent = getParent(objectId)
 	if getNumOfChildren(objectId) <= 8 then
 		EntityUtility.queryNodeHierarchy(
 			parent,
@@ -444,6 +456,11 @@ function MapObjectsHider.loadSettingsFromServer(baseMission, superFunc, connecti
 	superFunc(baseMission, connection, x, y, z, viewDistanceCoeff)
 	
 	connection:sendEvent(LoadMapObjectsHiderDataResult.new(), false)
+end
+
+---@param name string
+function MapObjectsHider:printObjectLoadingError(name)
+    Logging.warning("[%s] Can't find %s, something may have changed in the map hierarchy, the object will be restored.", self.metadata.name, name)
 end
 
 addModEventListener(MapObjectsHider);
