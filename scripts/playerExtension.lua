@@ -106,10 +106,16 @@ function PlayerExtension:raycastCallback(hitObjectId)
 					if object:isa(Placeable) then
 						local storeItem = g_storeManager:getItemByXMLFilename(object.configFileName)
 						if storeItem ~= nil then
-							self.raycastHideObject = {name = storeItem.name, object = object, isSellable = true}
-							if MapObjectsHider.debug then
-								-- debug placeable
-								self.hideObjectDebugInfo = {type = "Placeable", storeItem = storeItem}
+							local canSell = object:canBeSold() and storeItem.canBeSold and g_currentMission:getFarmId() == object:getOwnerFarmId();
+							if canSell then
+								self.raycastHideObject = {name = storeItem.name, object = object, isSellable = true}
+								if MapObjectsHider.debug then
+									-- debug placeable
+									self.hideObjectDebugInfo = {type = "Placeable", storeItem = storeItem}
+								end
+							else
+								-- hier soll man nichts machen können, weil verkaufen darf der User nicht, gehört jemandem, der das verkaufen darf
+								self.raycastHideObject = nil;
 							end
 							objectFound = true
 						end
