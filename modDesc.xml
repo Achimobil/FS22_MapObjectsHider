@@ -1,15 +1,42 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<modDesc descVersion="71">
+<modDesc descVersion="72">
 	<author>Achimobil</author>
 	<contributor>Royal Modding</contributor>
-	<version>0.1.0.0</version>
+	<version>0.2.0.0</version>
 	
 	<title>
-		<de>Map Objects Hider</de>
+		<en>Map Objects Hider</en>
 	</title>
 	
 	<description>
-		<de><![CDATA[description]]></de>
+		<de><![CDATA[Wenn der Mapper andere Pläne hatte als du, hör auf in der Map direkt anpassungen zu machen und blende aus, was dich stört.
+
+Dieser Mod ist auf Basis des LS19 Mods von Royal Modding aufgebaut und in den LS22 gebracht.
+Vielen dank an dieser Stelle noch mal für den tollen Mod im LS19 und für die Genehmigung ihn in den 22er zu bringen.
+
+Map Objekte wie Gebäude, Bäume, Leitplanken, Zäume und vieles mehr können ausgeblendet werden.
+Dies wird im Savegame gespeichert so dass es dauerhaft ausgeblendet bleibt solange die Map sich nicht verändert.
+
+Aber Vorsicht!
+- Nicht alle Objekttypen und auch nicht alle Objekte können entfernt werden.
+- Wenn Sie die Hierarchie der Objekte auf der Karte verändern (z.B. durch Änderungen im GIANTS Editor), können einige Objekte wieder auftauchen und müssen erneut entfernt werden.
+- Wenn eine Mod-Map nicht korrekt aufgebaut ist, kann das Entfernen einiger Bäume das oben genannte Problem verursachen.
+- Wenn Gebäude in der Map nicht korrekt definiert sind, so kann dies zu lustigen effekten führen.
+]]></de>
+		<en><![CDATA[If the mapper had other plans than you, stop making adjustments directly in the map and hide what bothers you.
+
+This mod is based on the LS19 mod from Royal Modding and brought into the LS22.
+Thanks again for the great mod in LS19 and for the permission to bring it into the 22.
+
+Map objects like buildings, trees, crash barriers, fences and much more can be hidden.
+This is saved in the savegame so that it remains permanently hidden as long as the map does not change.
+
+But be careful!
+- Not all object types and not all objects can be removed.
+- If you change the hierarchy of the objects on the map (e.g. by changes in the GIANTS editor), some objects may reappear and have to be removed again.
+- If a mod map is not built correctly, removing some trees can cause the above problem.
+- If buildings are not defined correctly in the map, this can lead to funny effects.
+]]></en>
 	</description>
 	
 	<multiplayer supported="true"/>

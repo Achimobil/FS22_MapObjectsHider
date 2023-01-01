@@ -1,8 +1,15 @@
---- Royal Utility
+--[[
+--DE--
+Teil des Map Object Hider für den LS22 von Achimobil aufgebaut auf den Skripten von Royal Modding aus dem LS 19.
+Kopieren und wiederverwenden ob ganz oder in Teilen ist untersagt.
 
----@author Royal Modding
----@version 2.1.1.0
----@date 09/11/2020
+--EN--
+Part of the Map Object Hider for the LS22 by Achimobil based on the scripts by Royal Modding from the LS 19.
+Copying and reusing in whole or in part is prohibited.
+
+Skript version 0.2.0.0 of 01.01.2023
+]]
+
 
 ---@class RandomInterval
 ---@field min integer
@@ -126,35 +133,6 @@ function Utility.overwrittenStaticFunction(target, name, newFunc)
     end
 end
 
----@param target table
----@param name string
----@param newFunc function
-function Utility.appendedFunction(target, name, newFunc)
-    if target == nil then
-        print("Error: " .. "appendedFunction 'target' cannot be nil")
-        printCallstack()
-    end
-    if newFunc == nil then
-        print("Error: " .. "appendedFunction 'newFunc' cannot be nil")
-        printCallstack()
-    end
-    target[name] = Utils.appendedFunction(target[name], newFunc)
-end
-
----@param target table
----@param name string
----@param newFunc function
-function Utility.prependedFunction(target, name, newFunc)
-    if target == nil then
-        print("Error: " .. "prependedFunction 'target' cannot be nil")
-        printCallstack()
-    end
-    if newFunc == nil then
-        print("Error: " .. "prependedFunction 'newFunc' cannot be nil")
-        printCallstack()
-    end
-    target[name] = Utils.prependedFunction(target[name], newFunc)
-end
 --- Get elapsed seconds between given date and FS19 release date
 ---@param year? integer
 ---@param month? integer

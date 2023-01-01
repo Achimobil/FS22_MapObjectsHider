@@ -1,8 +1,14 @@
---- Royal Utility
+--[[
+--DE--
+Teil des Map Object Hider für den LS22 von Achimobil aufgebaut auf den Skripten von Royal Modding aus dem LS 19.
+Kopieren und wiederverwenden ob ganz oder in Teilen ist untersagt.
 
----@author Royal Modding
----@version 2.1.1.0
----@date 05/01/2021
+--EN--
+Part of the Map Object Hider for the LS22 by Achimobil based on the scripts by Royal Modding from the LS 19.
+Copying and reusing in whole or in part is prohibited.
+
+Skript version 0.2.0.0 of 01.01.2023
+]]
 
 ---@class DebugUtility
 DebugUtility = DebugUtility or {}
@@ -260,78 +266,4 @@ function DebugUtility.renderAnimCurve(x, y, w, h, curve, numPointsToShow)
         curve.debugGraph = graph
     end
     graph:draw()
-end
-
---- Get the loading speed meter object
----@return LoadingSpeedMeter loadingSpeedMeter
-function DebugUtility.getVehicleLoadingSpeedMeter()
-    if DebugUtility.loadingSpeedMeter == nil then
-        ---@class LoadingSpeedMeter
-        DebugUtility.loadingSpeedMeter = {}
-        DebugUtility.loadingSpeedMeter.vehicles = {}
-        DebugUtility.loadingSpeedMeter.filters = {}
-        --- Add a new filter
-        ---@param filterFunction function | 'function(vehicleData) return true, "meter name" end'
-        DebugUtility.loadingSpeedMeter.addFilter = function(filterFunction)
-            table.insert(DebugUtility.loadingSpeedMeter.filters, filterFunction)
-        end
-        Utility.overwrittenFunction(
-            Vehicle,
-            "load",
-            function(self, superFunc, vehicleData, asyncCallbackFunction, asyncCallbackObject, asyncCallbackArguments)
-                local smEnabled = false
-                local smName = ""
-                for _, filter in ipairs(DebugUtility.loadingSpeedMeter.filters) do
-                    smEnabled, smName = filter(vehicleData)
-                    if smEnabled then
-                        break
-                    end
-                end
-
-                if smEnabled then
-                    DebugUtility.loadingSpeedMeter.vehicles[self] = {}
-                    DebugUtility.loadingSpeedMeter.vehicles[self].smName = smName
-                    DebugUtility.loadingSpeedMeter.vehicles[self].totalStartTime = getTimeSec()
-                end
-
-                local state = superFunc(self, vehicleData, asyncCallbackFunction, asyncCallbackObject, asyncCallbackArguments)
-
-                if smEnabled then
-                    DebugUtility.loadingSpeedMeter.vehicles[self].totalTime = getTimeSec() - DebugUtility.loadingSpeedMeter.vehicles[self].totalStartTime
-                    print(string.format("[%s] Pre   time: %.4f ms", DebugUtility.loadingSpeedMeter.vehicles[self].smName, (DebugUtility.loadingSpeedMeter.vehicles[self].preLoadTime or 0) * 1000))
-                    print(string.format("[%s] Load  time: %.4f ms", DebugUtility.loadingSpeedMeter.vehicles[self].smName, (DebugUtility.loadingSpeedMeter.vehicles[self].loadTime or 0) * 1000))
-                    print(string.format("[%s] Post  time: %.4f ms", DebugUtility.loadingSpeedMeter.vehicles[self].smName, (DebugUtility.loadingSpeedMeter.vehicles[self].postLoadTime or 0) * 1000))
-                    print(string.format("[%s] Total time: %.4f ms", DebugUtility.loadingSpeedMeter.vehicles[self].smName, (DebugUtility.loadingSpeedMeter.vehicles[self].totalTime or 0) * 1000))
-                    DebugUtility.loadingSpeedMeter.vehicles[self] = nil
-                end
-                return state
-            end
-        )
-        Utility.overwrittenStaticFunction(
-            SpecializationUtil,
-            "raiseEvent",
-            function(superFunc, vehicle, eventName, ...)
-                if DebugUtility.loadingSpeedMeter.vehicles[vehicle] ~= nil then
-                    if eventName == "onPreLoad" then
-                        DebugUtility.loadingSpeedMeter.vehicles[vehicle].preLoadStartTime = getTimeSec()
-                        superFunc(vehicle, eventName, ...)
-                        DebugUtility.loadingSpeedMeter.vehicles[vehicle].preLoadTime = getTimeSec() - DebugUtility.loadingSpeedMeter.vehicles[vehicle].preLoadStartTime
-                    end
-                    if eventName == "onLoad" then
-                        DebugUtility.loadingSpeedMeter.vehicles[vehicle].loadStartTime = getTimeSec()
-                        superFunc(vehicle, eventName, ...)
-                        DebugUtility.loadingSpeedMeter.vehicles[vehicle].loadTime = getTimeSec() - DebugUtility.loadingSpeedMeter.vehicles[vehicle].loadStartTime
-                    end
-                    if eventName == "onPostLoad" then
-                        DebugUtility.loadingSpeedMeter.vehicles[vehicle].postLoadStartTime = getTimeSec()
-                        superFunc(vehicle, eventName, ...)
-                        DebugUtility.loadingSpeedMeter.vehicles[vehicle].postLoadTime = getTimeSec() - DebugUtility.loadingSpeedMeter.vehicles[vehicle].postLoadStartTime
-                    end
-                else
-                    superFunc(vehicle, eventName, ...)
-                end
-            end
-        )
-    end
-    return DebugUtility.loadingSpeedMeter
 end

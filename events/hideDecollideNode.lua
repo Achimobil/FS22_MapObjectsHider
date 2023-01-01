@@ -1,8 +1,14 @@
---- Map Objects Hider
+--[[
+--DE--
+Teil des Map Object Hider für den LS22 von Achimobil aufgebaut auf den Skripten von Royal Modding aus dem LS 19.
+Kopieren und wiederverwenden ob ganz oder in Teilen ist untersagt.
 
----@author Duke of Modding
----@version 1.2.0.0
----@date 02/12/2020
+--EN--
+Part of the Map Object Hider for the LS22 by Achimobil based on the scripts by Royal Modding from the LS 19.
+Copying and reusing in whole or in part is prohibited.
+
+Skript version 0.2.0.0 of 01.01.2023
+]]
 
 HideDecollideNodeEvent = {}
 local HideDecollideNodeEvent_mt = Class(HideDecollideNodeEvent, Event)

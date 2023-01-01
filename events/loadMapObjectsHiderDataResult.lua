@@ -1,12 +1,13 @@
 --[[
-Part of Production Revamp
+--DE--
+Teil des Map Object Hider für den LS22 von Achimobil aufgebaut auf den Skripten von Royal Modding aus dem LS 19.
+Kopieren und wiederverwenden ob ganz oder in Teilen ist untersagt.
 
-Copyright (C) braeven & Achimobil 2022
+--EN--
+Part of the Map Object Hider for the LS22 by Achimobil based on the scripts by Royal Modding from the LS 19.
+Copying and reusing in whole or in part is prohibited.
 
-Author: Achimobil
-
-Version: 1.1.0.0
-Date: 22.08.2022
+Skript version 0.2.0.0 of 01.01.2023
 ]]
 
 LoadMapObjectsHiderDataResult = {}

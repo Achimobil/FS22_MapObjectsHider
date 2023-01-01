@@ -1,6 +1,19 @@
 --[[
+--DE--
 Map Object Hider für den LS22
-Basierend auf den Prinzipien des gleichnahmigen Mods von Royal Modding aus dem LS 19
+Basierend auf den Prinzipien und Skripten des gleichnahmigen Mods von Royal Modding aus dem LS 19
+
+Da das meiste hier von mir umgeschrieben und angepasst ist, ist das verändern und wiederveröffentlichen auch in Teilen untersagt.
+Veröffentlichung generell nur durch mich. Verbreitung nur mit verlinkung auf original Veröffentlicungen gestattet
+
+--EN--
+Map Object Hider for the LS22
+Based on the principles and scripts of the same mod by Royal Modding from LS 19.
+
+Since most of the content is rewritten and adapted by me, it is forbidden to change or republish parts of it.
+Publication generally only by me. Distribution is only allowed with a link to the original publication.
+
+Skript version 0.2.0.0 of 01.01.2023
 ]]
 
 
@@ -9,12 +22,12 @@ MapObjectsHider.metadata = {
 	name = "MapObjectsHider",
 	modName = "FS22_MapObjectsHider",
 	currentModName = g_currentModName,
-	version = "0.1.0.0",
+	version = "0.2.0.0",
 	author = "Achimobil",
 	info = "Das verändern und wiederöffentlichen, auch in Teilen, ist untersagt und wird abgemahnt."
 };
 MapObjectsHider.isInit = false;
-MapObjectsHider.debug = true;
+MapObjectsHider.debug = false;
 MapObjectsHider.revision = 1
 MapObjectsHider.md5 = not MapObjectsHider.debug
 MapObjectsHider.hideConfirmEnabled = true
@@ -77,11 +90,11 @@ function MapObjectsHider:init()
 	FSCareerMissionInfo.saveToXMLFile = Utils.appendedFunction(FSCareerMissionInfo.saveToXMLFile, MapObjectsHider.saveToXMLFile)
 	
 	-- Gui elemente laden
-    self.guiDirectory = Utils.getFilename("gui/", self.directory)
-    source(Utils.getFilename("elements/cameraElement.lua", self.guiDirectory))
-    source(Utils.getFilename("mohGui.lua", self.guiDirectory))
-    g_gui:loadProfiles(self.guiDirectory .. "guiProfiles.xml")
-    self.gui = g_gui:loadGui(self.guiDirectory .. "mohGui.xml", "MapObjectsHiderGui", MOHGui.new())
+	self.guiDirectory = Utils.getFilename("gui/", self.directory)
+	source(Utils.getFilename("elements/cameraElement.lua", self.guiDirectory))
+	source(Utils.getFilename("mohGui.lua", self.guiDirectory))
+	g_gui:loadProfiles(self.guiDirectory .. "guiProfiles.xml")
+	self.gui = g_gui:loadGui(self.guiDirectory .. "mohGui.xml", "MapObjectsHiderGui", MOHGui.new())
 
 	-- damit beim joinen im MP die einstellungen geholt werden senden wir ein event dass die einstellungen dann an alle schickt
 	FSBaseMission.onConnectionFinishedLoading = Utils.overwrittenFunction(FSBaseMission.onConnectionFinishedLoading, MapObjectsHider.loadSettingsFromServer)
@@ -328,28 +341,28 @@ end
 ---@param objectIndex string
 
 function MapObjectsHider:showObject(objectIndex)
-    if g_server ~= nil then
-        ArrayUtility.remove(
-            self.hiddenObjects,
-            ---@param hiddenObjects HideObject[]
-            ---@param index integer
-            ---@return boolean
-            function(hiddenObjects, index)
-                local hiddenObject = hiddenObjects[index]
-                if hiddenObject.index == objectIndex then
-                    -- inviare evento di ripristino
-                    self:showNode(hiddenObject.id)
-                    ShowCollideNodeEvent.sendToClients(true, hiddenObject.index)
-                    for _, col in pairs(hiddenObject.collisions) do
-                        self:collideNode(col.id, col.rigidBodyType)
-                        ShowCollideNodeEvent.sendToClients(false, col.index, col.rigidBodyType)
-                    end
-                    return true
-                end
-                return false
-            end
-        )
-    end
+	if g_server ~= nil then
+		ArrayUtility.remove(
+			self.hiddenObjects,
+			---@param hiddenObjects HideObject[]
+			---@param index integer
+			---@return boolean
+			function(hiddenObjects, index)
+				local hiddenObject = hiddenObjects[index]
+				if hiddenObject.index == objectIndex then
+					-- inviare evento di ripristino
+					self:showNode(hiddenObject.id)
+					ShowCollideNodeEvent.sendToClients(true, hiddenObject.index)
+					for _, col in pairs(hiddenObject.collisions) do
+						self:collideNode(col.id, col.rigidBodyType)
+						ShowCollideNodeEvent.sendToClients(false, col.index, col.rigidBodyType)
+					end
+					return true
+				end
+				return false
+			end
+		)
+	end
 end
 
 ---@param objectId integer
@@ -433,13 +446,13 @@ end
 
 ---@param nodeId integer
 function MapObjectsHider:showNode(nodeId)
-    setVisibility(nodeId, true)
+	setVisibility(nodeId, true)
 end
 
 ---@param nodeId integer
 ---@param rigidBodyType string
 function MapObjectsHider:collideNode(nodeId, rigidBodyType)
-    setRigidBodyType(nodeId, rigidBodyType)
+	setRigidBodyType(nodeId, rigidBodyType)
 end
 
 function MapObjectsHider:openGui()
@@ -460,7 +473,7 @@ end
 
 ---@param name string
 function MapObjectsHider:printObjectLoadingError(name)
-    Logging.warning("[%s] Can't find %s, something may have changed in the map hierarchy, the object will be restored.", self.metadata.name, name)
+	Logging.warning("[%s] Can't find %s, something may have changed in the map hierarchy, the object will be restored.", self.metadata.name, name)
 end
 
 addModEventListener(MapObjectsHider);
