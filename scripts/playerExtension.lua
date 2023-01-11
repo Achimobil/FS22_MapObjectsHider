@@ -29,6 +29,17 @@ function PlayerExtension.new(isServer, isClient)
 		text = g_i18n:getText("moh_HIDE"),
 		textVisibility = true
 	}
+	self.inputInformation.registrationList[InputAction.MAP_OBJECT_HIDER_DECOLLIDE] = {
+		eventId = "",
+		callback = self.decollideObjectActionEvent,
+		triggerUp = false,
+		triggerDown = true,
+		triggerAlways = false,
+		activeType = Player.INPUT_ACTIVE_TYPE.STARTS_ENABLED,
+		callbackState = nil,
+		text = g_i18n:getText("moh_HIDE"),
+		textVisibility = true
+	}
 	self.inputInformation.registrationList[InputAction.MAP_OBJECT_HIDER_GUI] = {
 		eventId = "",
 		callback = self.showHiddenObjectsListActionEvent,
@@ -137,6 +148,8 @@ end
 ---@param superFunc function
 function PlayerExtension:updateActionEvents(superFunc)
 	superFunc(self)
+	local eventIdDecollide = self.inputInformation.registrationList[InputAction.MAP_OBJECT_HIDER_DECOLLIDE].eventId;
+	local canDecollide = false;
 	if self.raycastHideObject ~= nil then
 		local id = self.inputInformation.registrationList[InputAction.MAP_OBJECT_HIDER_HIDE].eventId
 		if self.raycastHideObject.isSellable then
@@ -145,6 +158,8 @@ function PlayerExtension:updateActionEvents(superFunc)
 			g_inputBinding:setActionEventText(id, g_i18n:getText("moh_DELETE"):format(self.raycastHideObject.name))
 		else
 			g_inputBinding:setActionEventText(id, g_i18n:getText("moh_HIDE"):format(self.raycastHideObject.name))
+			g_inputBinding:setActionEventText(eventIdDecollide, g_i18n:getText("moh_DECOLLIDE"):format(self.raycastHideObject.name))
+			canDecollide = true;
 		end
 		g_inputBinding:setActionEventActive(id, true)
 		g_inputBinding:setActionEventTextVisibility(id, true)
@@ -155,9 +170,12 @@ function PlayerExtension:updateActionEvents(superFunc)
 	end
 	local id = self.inputInformation.registrationList[InputAction.MAP_OBJECT_HIDER_GUI].eventId
 	g_inputBinding:setActionEventTextVisibility(id, MapObjectsHider.guiShowHelpEnabled)
+	
+	g_inputBinding:setActionEventActive(eventIdDecollide, canDecollide)
+	g_inputBinding:setActionEventTextVisibility(eventIdDecollide, canDecollide)
 end
 
-function PlayerExtension:hideObjectActionEvent()
+function Player:baseObjectActionEvent()
 	if self.raycastHideObject ~= nil then
 		self.raycastHideObjectBackup = self.raycastHideObject
 		if self.raycastHideObject.isSellable then
@@ -182,6 +200,16 @@ function PlayerExtension:hideObjectActionEvent()
 	end
 end
 
+function PlayerExtension:hideObjectActionEvent()
+	self.onlyDecollide = false;
+	self:baseObjectActionEvent()
+end
+
+function PlayerExtension:decollideObjectActionEvent()
+	self.onlyDecollide = true;
+	self:baseObjectActionEvent()
+end
+
 function PlayerExtension:showHiddenObjectsListActionEvent()
 	MapObjectsHider:openGui()
 end
@@ -189,7 +217,7 @@ end
 ---@param yes boolean
 function PlayerExtension:hideObjectDialogCallback(yes)
 	if yes and self.raycastHideObjectBackup ~= nil and self.raycastHideObjectBackup.id ~= nil then
-		MapObjectsHider:hideObject(self.raycastHideObjectBackup.id)
+		MapObjectsHider:hideObject(self.raycastHideObjectBackup.id, nil, nil, self.onlyDecollide)
 		self.raycastHideObjectBackup = nil
 	end
 end

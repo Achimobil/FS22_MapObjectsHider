@@ -3,9 +3,11 @@
 	<translationContributors>Swedish Fika</translationContributors>
 	<texts>
 		<text name="input_MAP_OBJECT_HIDER_HIDE"		text="Dölj ett Map objekt"/>.
+		<text name="input_MAP_OBJECT_HIDER_DECOLLIDE"	text="Remove Collision only"/>
 		<text name="input_MAP_OBJECT_HIDER_GUI"			text="Öppna Objekt Döljar panelen"/>
 		<text name="moh_MAP_OBJECT_HIDER_GUI"			text="Visa en lista över dolda okjekt"/>
 		<text name="moh_HIDE"							text="Dölj (%s)"/>
+		<text name="moh_DECOLLIDE"						text="Remove Collision (%s)"/>
 		<text name="moh_SELL"							text="Sälj (%s)"/>
 		<text name="moh_DELETE"							text="Ta bort (%s)"/>
 		<text name="moh_dialog_title"					text="Map Objekt Döljare"/>

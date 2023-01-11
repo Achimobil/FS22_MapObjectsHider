@@ -39,6 +39,7 @@ function LoadMapObjectsHiderDataResult:writeStream(streamId, connection)
             table.insert(collisions, col.index)
         end
         streamWriteString(streamId, obj.index)
+        streamWritebool(streamId, obj.onlyDecollide)
     end
     streamWriteInt32(streamId, collisionsCount)
     for i = 1, collisionsCount, 1 do
@@ -52,7 +53,10 @@ function LoadMapObjectsHiderDataResult:readStream(streamId, connection)
     local objectsCount = streamReadInt32(streamId)
     for i = 1, objectsCount, 1 do
         local objIndex = streamReadString(streamId)
-        MapObjectsHider:hideNode(EntityUtility.indexToNode(objIndex, MapObjectsHider.mapNode))
+        local onlyDecollide = streamReadBool(streamId)
+		if onlyDecollide then
+			MapObjectsHider:hideNode(EntityUtility.indexToNode(objIndex, MapObjectsHider.mapNode))
+		end
     end
     local collisionsCount = streamReadInt32(streamId)
     for i = 1, collisionsCount, 1 do

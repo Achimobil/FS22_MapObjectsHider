@@ -70,6 +70,10 @@ function MapObjectsHider:init()
 		Player.hideObjectActionEvent = PlayerExtension.hideObjectActionEvent
 	end
 
+	if Player.decollideObjectActionEvent == nil then
+		Player.decollideObjectActionEvent = PlayerExtension.decollideObjectActionEvent
+	end
+
 	if Player.hideObjectDialogCallback == nil then
 		Player.hideObjectDialogCallback = PlayerExtension.hideObjectDialogCallback
 	end
@@ -130,6 +134,7 @@ function MapObjectsHider:saveToXMLFile()
 			setXMLString(xmlFile, key .. "#date", object.date)
 			setXMLString(xmlFile, key .. "#time", object.time)
 			setXMLString(xmlFile, key .. "#player", object.player)
+			setXMLBool(xmlFile, key .. "#onlyDecollide", object.onlyDecollide)
 			setXMLInt(xmlFile, key .. "#timestamp", object.timestamp)
 
 			local cIndex = 0
@@ -177,6 +182,7 @@ function MapObjectsHider:loadFromXML()
 					object.date = getXMLString(xmlFile, key .. "#date") or ""
 					object.time = getXMLString(xmlFile, key .. "#time") or ""
 					object.player = getXMLString(xmlFile, key .. "#player") or ""
+					object.onlyDecollide = getXMLBool(xmlFile, key .. "#onlyDecollide") or false
 					object.timestamp = getXMLInt(xmlFile, key .. "#timestamp") or self.getTimestampFromDateAndTime(object.date, object.time)
 					object.id = EntityUtility.indexToNode(object.index, self.mapNode)
 					if object.id ~= nil then
@@ -185,7 +191,9 @@ function MapObjectsHider:loadFromXML()
 							object.hash = newHash
 						end
 						if newHash == object.hash then
-							self:hideNode(object.id)
+							if not object.onlyDecollide then
+								self:hideNode(object.id)
+							end
 							---@type HideObjectCollision[]
 							object.collisions = {}
 							local cIndex = 0
@@ -318,16 +326,19 @@ end
 ---@param objectId integer
 ---@param name string
 ---@param hiderPlayerName string
-function MapObjectsHider:hideObject(objectId, name, hiderPlayerName)
-	MapObjectsHider.print("MapObjectsHider:hideObject(%s, %s, %s)", objectId, name, hiderPlayerName);
+function MapObjectsHider:hideObject(objectId, name, hiderPlayerName, onlyDecollide)
+	MapObjectsHider.print("MapObjectsHider:hideObject(%s, %s, %s, %s)", objectId, name, hiderPlayerName, onlyDecollide);
 	if g_server ~= nil then
 		local objectName = name or getName(objectId)
 
 		local object = MapObjectsHider:getHideObject(objectId, objectName, hiderPlayerName)
+		object.onlyDecollide = onlyDecollide
 
 		if MapObjectsHider:checkHideObject(object) then
-			self:hideNode(object.id)
-			HideDecollideNodeEvent.sendToClients(object.index, true)
+			if not onlyDecollide then
+				self:hideNode(object.id)
+				HideDecollideNodeEvent.sendToClients(object.index, true)
+			end
 			for _, collision in pairs(object.collisions) do
 				self:decollideNode(collision.id)
 				HideDecollideNodeEvent.sendToClients(collision.index, false)
@@ -335,7 +346,7 @@ function MapObjectsHider:hideObject(objectId, name, hiderPlayerName)
 			table.insert(self.hiddenObjects, object)
 		end
 	else
-		ObjectHideRequestEvent.sendToServer(objectId)
+		ObjectHideRequestEvent.sendToServer(objectId, onlyDecollide)
 	end
 end
 ---@param objectIndex string

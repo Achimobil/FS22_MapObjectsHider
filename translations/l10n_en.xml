@@ -2,9 +2,11 @@
 <l10n>
 	<texts>
 		<text name="input_MAP_OBJECT_HIDER_HIDE"		text="Hide a map object"/>.
+		<text name="input_MAP_OBJECT_HIDER_DECOLLIDE"	text="Remove Collision only"/>
 		<text name="input_MAP_OBJECT_HIDER_GUI"			text="Open the Map Objects Hider panel"/>
 		<text name="moh_MAP_OBJECT_HIDER_GUI"			text="Show list of hidden objects"/>
 		<text name="moh_HIDE"							text="Hide (%s)"/>
+		<text name="moh_DECOLLIDE"						text="Remove Collision (%s)"/>
 		<text name="moh_SELL"							text="Sell (%s)"/>
 		<text name="moh_DELETE"							text="Delete (%s)"/>
 		<text name="moh_dialog_title"					text="Map Objects Hider"/>

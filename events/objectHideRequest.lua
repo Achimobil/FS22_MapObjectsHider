@@ -24,34 +24,37 @@ end
 
 ---@param objectIndex string
 ---@return table
-function ObjectHideRequestEvent.new(objectIndex)
+function ObjectHideRequestEvent.new(objectIndex, onlyDecollide)
     local o = ObjectHideRequestEvent.emptyNew()
     o.objectIndex = objectIndex
+    o.onlyDecollide = onlyDecollide
     return o
 end
 
 ---@param streamId integer
 function ObjectHideRequestEvent:writeStream(streamId, _)
     streamWriteString(streamId, self.objectIndex)
+    streamWriteBool(streamId, self.onlyDecollide)
 end
 
 ---@param streamId integer
 ---@param connection Connection
 function ObjectHideRequestEvent:readStream(streamId, connection)
     self.objectIndex = streamReadString(streamId)
+    self.onlyDecollide = streamReadBool(streamId)
     self:run(connection)
 end
 
 ---@param connection Connection
 function ObjectHideRequestEvent:run(connection)
     if g_server ~= nil then
-        MapObjectsHider:hideObject(EntityUtility.indexToNode(self.objectIndex, MapObjectsHider.mapNode), nil, g_currentMission.userManager:getUserByConnection(connection):getNickname())
+        MapObjectsHider:hideObject(EntityUtility.indexToNode(self.objectIndex, MapObjectsHider.mapNode), nil, g_currentMission.userManager:getUserByConnection(connection):getNickname(), onlyDecollide)
     end
 end
 
 ---@param objectId integer
-function ObjectHideRequestEvent.sendToServer(objectId)
+function ObjectHideRequestEvent.sendToServer(objectId, onlyDecollide)
     if g_server == nil then
-        g_client:getServerConnection():sendEvent(ObjectHideRequestEvent.new(EntityUtility.nodeToIndex(objectId, MapObjectsHider.mapNode)))
+        g_client:getServerConnection():sendEvent(ObjectHideRequestEvent.new(EntityUtility.nodeToIndex(objectId, MapObjectsHider.mapNode)), onlyDecollide)
     end
 end

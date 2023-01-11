@@ -2,7 +2,7 @@
 <modDesc descVersion="72">
 	<author>Achimobil</author>
 	<contributor>Royal Modding</contributor>
-	<version>0.2.0.0</version>
+	<version>0.3.0.0</version>
 	
 	<title>
 		<en>Map Objects Hider</en>
@@ -62,6 +62,7 @@ But be careful!
 
 	<actions>
 		<action name="MAP_OBJECT_HIDER_HIDE" axisType="HALF" />
+		<action name="MAP_OBJECT_HIDER_DECOLLIDE" axisType="HALF" />
 		<action name="MAP_OBJECT_HIDER_GUI" axisType="HALF" />
 	</actions>
 
@@ -69,6 +70,9 @@ But be careful!
 		<actionBinding action="MAP_OBJECT_HIDER_HIDE">
 			<binding device="KB_MOUSE_DEFAULT" input="KEY_h" />
 		</actionBinding>
+		<!-- <actionBinding action="MAP_OBJECT_HIDER_DECOLLIDE"> -->
+			<!-- <binding device="KB_MOUSE_DEFAULT" input="KEY_lalt KEY_h" /> -->
+		<!-- </actionBinding> -->
 		<actionBinding action="MAP_OBJECT_HIDER_GUI">
 			<binding device="KB_MOUSE_DEFAULT" input="KEY_lshift KEY_h" />
 		</actionBinding>
