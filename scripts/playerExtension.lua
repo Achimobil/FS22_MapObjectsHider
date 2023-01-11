@@ -119,11 +119,8 @@ function PlayerExtension:raycastCallback(hitObjectId)
 									-- debug placeable
 									self.hideObjectDebugInfo = {type = "Placeable", storeItem = storeItem}
 								end
-							else
-								-- hier soll man nichts machen können, weil verkaufen darf der User nicht, gehört jemandem, der das verkaufen darf
-								self.raycastHideObject = nil;
+								objectFound = true
 							end
-							objectFound = true
 						end
 					end
 				end
