@@ -40,7 +40,7 @@ But be careful!
 	</description>
 	
 	<multiplayer supported="true"/>
-	<iconFilename>icon.png</iconFilename>
+	<iconFilename>icon_MapObjectsHider.png</iconFilename>
 	
 	<extraSourceFiles>
 		<sourceFile filename="mapObjectsHider.lua"/>
