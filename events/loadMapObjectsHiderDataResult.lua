@@ -54,14 +54,19 @@ function LoadMapObjectsHiderDataResult:readStream(streamId, connection)
     for i = 1, objectsCount, 1 do
         local objIndex = streamReadString(streamId)
         local onlyDecollide = streamReadBool(streamId)
-		if onlyDecollide then
+		if not onlyDecollide then
 			MapObjectsHider:hideNode(EntityUtility.indexToNode(objIndex, MapObjectsHider.mapNode))
 		end
     end
-    local collisionsCount = streamReadInt32(streamId)
+    local collisionsCount = streamReadInt32(streamId);
     for i = 1, collisionsCount, 1 do
-        local colIndex = streamReadString(streamId)
-        MapObjectsHider:decollideNode(EntityUtility.indexToNode(colIndex, MapObjectsHider.mapNode))
+        local colIndex = streamReadString(streamId);
+		local colNodeId = EntityUtility.indexToNode(colIndex, MapObjectsHider.mapNode);
+		if colNodeId ~= nil then
+			MapObjectsHider:decollideNode(colNodeId)
+		else
+			Logging.warning("[%s] Can't find colision node for colision index '%s' in LoadMapObjectsHiderDataResult readStream. Collision %s of %s", self.metadata.name, colIndex, i, collisionsCount);
+		end
     end
 	
 	self:run(connection)

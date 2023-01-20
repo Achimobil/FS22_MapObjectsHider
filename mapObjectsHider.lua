@@ -27,7 +27,7 @@ MapObjectsHider.metadata = {
 	info = "Das verändern und wiederöffentlichen, auch in Teilen, ist untersagt und wird abgemahnt."
 };
 MapObjectsHider.isInit = false;
-MapObjectsHider.debug = false;
+MapObjectsHider.debug = true;
 MapObjectsHider.revision = 1
 MapObjectsHider.md5 = not MapObjectsHider.debug
 MapObjectsHider.hideConfirmEnabled = true
