@@ -27,7 +27,7 @@ MapObjectsHider.metadata = {
 	info = "Das verändern und wiederöffentlichen, auch in Teilen, ist untersagt und wird abgemahnt."
 };
 MapObjectsHider.isInit = false;
-MapObjectsHider.debug = true;
+MapObjectsHider.debug = false;
 MapObjectsHider.revision = 1
 MapObjectsHider.md5 = not MapObjectsHider.debug
 MapObjectsHider.hideConfirmEnabled = true
@@ -134,7 +134,7 @@ function MapObjectsHider:saveToXMLFile()
 			setXMLString(xmlFile, key .. "#date", object.date)
 			setXMLString(xmlFile, key .. "#time", object.time)
 			setXMLString(xmlFile, key .. "#player", object.player)
-			setXMLBool(xmlFile, key .. "#onlyDecollide", object.onlyDecollide)
+			setXMLBool(xmlFile, key .. "#onlyDecollide", object.onlyDecollide or false)
 			setXMLInt(xmlFile, key .. "#timestamp", object.timestamp)
 
 			local cIndex = 0
