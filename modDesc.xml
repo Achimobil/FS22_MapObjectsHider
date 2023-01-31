@@ -24,7 +24,7 @@ Aber Vorsicht!
 - Wenn Gebäude in der Map nicht korrekt definiert sind, so kann dies zu lustigen Effekten führen.
 
 Changelog 0.3.1.1
-- Ein paar prüfungen zur Identifizierung der gemeldeten Lua Fehler eingefügt. Fehlerhafte einträge werden als Warning in die Log geschrieben und nicht weiter ausgewertet.
+- Ein paar Prüfungen zur Identifizierung der gemeldeten Lua Fehler eingefügt. Fehlerhafte Einträge werden als Warnung in die Log geschrieben und nicht weiter ausgewertet.
 ]]></de>
 		<en><![CDATA[If the mapper had other plans than you, stop making adjustments directly in the map and hide what bothers you.
 

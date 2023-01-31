@@ -3,11 +3,11 @@
     <translationContributors>nagor</translationContributors>
 	<texts>
 		<text name="input_MAP_OBJECT_HIDER_HIDE"		text="Скрыть объект"/>.
-		<text name="input_MAP_OBJECT_HIDER_DECOLLIDE"	text="Remove Collision only"/>
+		<text name="input_MAP_OBJECT_HIDER_DECOLLIDE"	text="Удалить только столкновение"/>
 		<text name="input_MAP_OBJECT_HIDER_GUI"			text="Открыть панель Скрытые объекты"/>
 		<text name="moh_MAP_OBJECT_HIDER_GUI"			text="Показать список скрытых объектов"/>
 		<text name="moh_HIDE"							text="Скрыть (%s)"/>
-		<text name="moh_DECOLLIDE"						text="Remove Collision (%s)"/>
+		<text name="moh_DECOLLIDE"						text="Удалить столкновение (%s)"/>
 		<text name="moh_SELL"							text="Продать (%s)"/>
 		<text name="moh_DELETE"							text="Удалить (%s)"/>
 		<text name="moh_dialog_title"					text="Скрытие объектов на карте"/>
