@@ -35,7 +35,7 @@ function LoadMapObjectsHiderDataResult:writeStream(streamId, connection)
         local obj = MapObjectsHider.hiddenObjects[i]
         for colIndex, col in pairs(obj.collisions) do
 			if col.index == nil then
-				Logging.warning("[%s] index of collision %s of object %s is nil, do not send to client", self.metadata.name, colIndex, obj.index);
+				Logging.warning("[%s] index of collision %s of object %s is nil, do not send to client", MapObjectsHider.metadata.name, colIndex, obj.index);
 			else
 				table.insert(collisions, col.index)
 			end
@@ -70,7 +70,7 @@ function LoadMapObjectsHiderDataResult:readStream(streamId, connection)
 		if colNodeId ~= nil then
 			MapObjectsHider:decollideNode(colNodeId)
 		else
-			Logging.warning("[%s] Can't find collision node for collision index '%s' in LoadMapObjectsHiderDataResult readStream. Collision %s of %s", self.metadata.name, colIndex, i, collisionsCount);
+			Logging.warning("[%s] Can't find collision node for collision index '%s' in LoadMapObjectsHiderDataResult readStream. Collision %s of %s", MapObjectsHider.metadata.name, colIndex, i, collisionsCount);
 		end
     end
 	

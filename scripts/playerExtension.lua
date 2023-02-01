@@ -175,9 +175,11 @@ function PlayerExtension:updateActionEvents(superFunc)
 	g_inputBinding:setActionEventTextVisibility(eventIdDecollide, canDecollide)
 end
 
-function Player:baseObjectActionEvent()
+function Player:baseObjectActionEvent(onlyDecollide)
+	MapObjectsHider.print("Player:baseObjectActionEvent(%s)", onlyDecollide);
 	if self.raycastHideObject ~= nil then
 		self.raycastHideObjectBackup = self.raycastHideObject
+		self.onlyDecollide = onlyDecollide
 		if self.raycastHideObject.isSellable then
 			if MapObjectsHider.sellConfirmEnabled then
 				g_gui:showYesNoDialog({text = g_i18n:getText("moh_sell_dialog_text"):format(self.raycastHideObjectBackup.name), title = g_i18n:getText("moh_dialog_title"), callback = self.sellObjectDialogCallback, target = self})
@@ -201,13 +203,13 @@ function Player:baseObjectActionEvent()
 end
 
 function PlayerExtension:hideObjectActionEvent()
-	self.onlyDecollide = false;
-	self:baseObjectActionEvent()
+	MapObjectsHider.print("PlayerExtension:hideObjectActionEvent()");
+	self:baseObjectActionEvent(false)
 end
 
 function PlayerExtension:decollideObjectActionEvent()
-	self.onlyDecollide = true;
-	self:baseObjectActionEvent()
+	MapObjectsHider.print("PlayerExtension:decollideObjectActionEvent()");
+	self:baseObjectActionEvent(true)
 end
 
 function PlayerExtension:showHiddenObjectsListActionEvent()
@@ -216,6 +218,7 @@ end
 
 ---@param yes boolean
 function PlayerExtension:hideObjectDialogCallback(yes)
+	MapObjectsHider.print("PlayerExtension:hideObjectDialogCallback(%s)", yes);
 	if yes and self.raycastHideObjectBackup ~= nil and self.raycastHideObjectBackup.id ~= nil then
 		MapObjectsHider:hideObject(self.raycastHideObjectBackup.id, nil, nil, self.onlyDecollide)
 		self.raycastHideObjectBackup = nil
