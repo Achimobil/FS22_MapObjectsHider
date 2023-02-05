@@ -22,7 +22,7 @@ MapObjectsHider.metadata = {
 	name = "MapObjectsHider",
 	modName = "FS22_MapObjectsHider",
 	currentModName = g_currentModName,
-	version = "0.2.0.0",
+	version = "0.3.1.3",
 	author = "Achimobil",
 	info = "Das verändern und wiederöffentlichen, auch in Teilen, ist untersagt und wird abgemahnt."
 };

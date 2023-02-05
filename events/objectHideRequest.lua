@@ -48,7 +48,7 @@ end
 ---@param connection Connection
 function ObjectHideRequestEvent:run(connection)
     if g_server ~= nil then
-        MapObjectsHider:hideObject(EntityUtility.indexToNode(self.objectIndex, MapObjectsHider.mapNode), nil, g_currentMission.userManager:getUserByConnection(connection):getNickname(), onlyDecollide)
+        MapObjectsHider:hideObject(EntityUtility.indexToNode(self.objectIndex, MapObjectsHider.mapNode), nil, g_currentMission.userManager:getUserByConnection(connection):getNickname(), self.onlyDecollide)
     end
 end
 
