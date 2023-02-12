@@ -2,7 +2,7 @@
 <modDesc descVersion="72">
 	<author>Achimobil</author>
 	<contributor>Royal Modding</contributor>
-	<version>0.3.1.3</version>
+	<version>1.0.0.0</version>
 	
 	<title>
 		<en>Map Objects Hider</en>
@@ -12,26 +12,16 @@
 		<de><![CDATA[Wenn der Mapper andere Pläne hatte als du, hör auf in der Map direkt Anpassungen zu machen und blende aus, was dich stört.
 
 Dieser Mod ist auf Basis des LS19 Mods von Royal Modding aufgebaut und in den LS22 gebracht.
-Vielen dank an dieser Stelle noch mal für den tollen Mod im LS19 und für die Genehmigung ihn in den 22er zu bringen.
+Vielen Dank an dieser Stelle noch mal für den tollen Mod im LS19 und für die Genehmigung ihn in den 22er zu bringen.
 
 Map Objekte wie Gebäude, Bäume, Leitplanken, Zäume und vieles mehr können ausgeblendet werden.
-Dies wird im Savegame gespeichert so dass es dauerhaft ausgeblendet bleibt solange die Map sich nicht verändert.
+Dies wird im Savegame gespeichert damit es dauerhaft ausgeblendet bleibt, solange die Map sich nicht verändert.
 
 Aber Vorsicht!
 - Nicht alle Objekttypen und auch nicht alle Objekte können entfernt werden.
 - Wenn Sie die Hierarchie der Objekte auf der Karte verändern (z.B. durch Änderungen im GIANTS Editor), können einige Objekte wieder auftauchen und müssen erneut entfernt werden.
 - Wenn eine Mod-Map nicht korrekt aufgebaut ist, kann das Entfernen einiger Bäume das oben genannte Problem verursachen.
 - Wenn Gebäude in der Map nicht korrekt definiert sind, so kann dies zu lustigen Effekten führen.
-
-Changelog 
-0.3.1.3
-- Fehler anhand weitere Dedi Logs behoben
-
-0.3.1.2
-- Fehler mit bool onlyDecollide übergabe an server behoben
-
-0.3.1.1
-- Ein paar Prüfungen zur Identifizierung der gemeldeten Lua Fehler eingefügt. Fehlerhafte Einträge werden als Warnung in die Log geschrieben und nicht weiter ausgewertet.
 ]]></de>
 		<en><![CDATA[If the mapper had other plans than you, stop making adjustments directly in the map and hide what bothers you.
 
