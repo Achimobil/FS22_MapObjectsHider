@@ -110,7 +110,7 @@ function MOHGui:onHiddenObjectsReceived(hiddenObjects)
         end
     )
 
-    Logging:devInfo("Loaded %d hidden objects in %.2f ms", #self.hiddenObjects, (getTimeSec() - self.startLoadingTime) * 1000)
+    Logging.devInfo("Loaded %d hidden objects in %.2f ms", #self.hiddenObjects, (getTimeSec() - self.startLoadingTime) * 1000)
 
     self:refreshList()
 end
