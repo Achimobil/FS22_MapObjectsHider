@@ -2,7 +2,7 @@
 <modDesc descVersion="72">
 	<author>Achimobil</author>
 	<contributor>Royal Modding</contributor>
-	<version>0.3.1.3</version>
+	<version>1.0.0.0</version>
 	
 	<title>
 		<en>Map Objects Hider</en>
@@ -12,40 +12,42 @@
 		<de><![CDATA[Wenn der Mapper andere Pläne hatte als du, hör auf in der Map direkt Anpassungen zu machen und blende aus, was dich stört.
 
 Dieser Mod ist auf Basis des LS19 Mods von Royal Modding aufgebaut und in den LS22 gebracht.
-Vielen dank an dieser Stelle noch mal für den tollen Mod im LS19 und für die Genehmigung ihn in den 22er zu bringen.
+Vielen Dank an dieser Stelle noch mal für den tollen Mod im LS19 und für die Genehmigung ihn in den 22er zu bringen.
 
-Map Objekte wie Gebäude, Bäume, Leitplanken, Zäume und vieles mehr können ausgeblendet werden.
-Dies wird im Savegame gespeichert so dass es dauerhaft ausgeblendet bleibt solange die Map sich nicht verändert.
+Map Objekte wie Gebäude, Leitplanken, Zäune und vieles mehr können ausgeblendet werden.
+Nur ausgeblendete Objekte können nachher über den Dialog zurückgeholt werden.
+Dies wird im Savegame gespeichert damit es dauerhaft ausgeblendet bleibt, solange die Map sich nicht verändert.
+
+Platzierbare Gebäude werden verkauft und nicht ausgeblendet. Hierzu muss man die Berechtigung haben diese zu verkaufen.
+Bäume werden gelöscht und nicht ausgeblendet.
+Verkaufte oder gelöschte Objekte können nicht wieder zurückgesetzt werden.
 
 Aber Vorsicht!
-- Nicht alle Objekttypen und auch nicht alle Objekte können entfernt werden.
+- Nicht alle Objekttypen und auch nicht alle Objekte können entfernt werden. (z.B. Parkende Autos können nicht entfernt werden)
 - Wenn Sie die Hierarchie der Objekte auf der Karte verändern (z.B. durch Änderungen im GIANTS Editor), können einige Objekte wieder auftauchen und müssen erneut entfernt werden.
 - Wenn eine Mod-Map nicht korrekt aufgebaut ist, kann das Entfernen einiger Bäume das oben genannte Problem verursachen.
 - Wenn Gebäude in der Map nicht korrekt definiert sind, so kann dies zu lustigen Effekten führen.
-
-Changelog 
-0.3.1.3
-- Fehler anhand weitere Dedi Logs behoben
-
-0.3.1.2
-- Fehler mit bool onlyDecollide übergabe an server behoben
-
-0.3.1.1
-- Ein paar Prüfungen zur Identifizierung der gemeldeten Lua Fehler eingefügt. Fehlerhafte Einträge werden als Warnung in die Log geschrieben und nicht weiter ausgewertet.
+- Es ist möglich Mapränder auszublenden. Hierdurch kann man dann ins Bodenlose fallen. Sollte man nicht machen.
 ]]></de>
 		<en><![CDATA[If the mapper had other plans than you, stop making adjustments directly in the map and hide what bothers you.
 
 This mod is based on the LS19 mod from Royal Modding and brought into the LS22.
 Thanks again for the great mod in LS19 and for the permission to bring it into the 22.
 
-Map objects like buildings, trees, crash barriers, fences and much more can be hidden.
+Map objects like buildings, crash barriers, fences and much more can be hidden.
+Onnly hidden objects can later be restored over the restore dialog.
 This is saved in the savegame so that it remains permanently hidden as long as the map does not change.
 
+Placables will be sold instead of hiding them. You need to have the permission to do this.
+Trees will be deleted instead of hiding them.
+Sold or deleted objects could not be restored.
+
 But be careful!
-- Not all object types and not all objects can be removed.
+- Not all object types and not all objects can be removed. (e.g. parked cars could not be removed)
 - If you change the hierarchy of the objects on the map (e.g. by changes in the GIANTS editor), some objects may reappear and have to be removed again.
 - If a mod map is not built correctly, removing some trees can cause the above problem.
 - If buildings are not defined correctly in the map, this can lead to funny effects.
+- It is possible to hide Map boarders. You could fall into nirvana then. Should not be done.
 ]]></en>
 	</description>
 	
