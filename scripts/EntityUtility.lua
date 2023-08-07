@@ -77,7 +77,7 @@ function EntityUtility.indexToNode(nodeIndex, rootId)
     for _, index in pairs(indexes) do
         index = tonumber(index)
         if type(index) == "number" then
-            if getNumOfChildren(objectId) >= index then
+            if getNumOfChildren(objectId) > index then
                 objectId = getChildAt(objectId, index)
             else
                 return nil

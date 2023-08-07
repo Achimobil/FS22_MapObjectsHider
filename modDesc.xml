@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<modDesc descVersion="72">
+<modDesc descVersion="77">
 	<author>Achimobil</author>
 	<contributor>Royal Modding</contributor>
-	<version>1.0.0.0</version>
+	<version>1.0.1.0</version>
 	
 	<title>
 		<en>Map Objects Hider</en>
@@ -28,6 +28,9 @@ Aber Vorsicht!
 - Wenn eine Mod-Map nicht korrekt aufgebaut ist, kann das Entfernen einiger Bäume das oben genannte Problem verursachen.
 - Wenn Gebäude in der Map nicht korrekt definiert sind, so kann dies zu lustigen Effekten führen.
 - Es ist möglich Mapränder auszublenden. Hierdurch kann man dann ins Bodenlose fallen. Sollte man nicht machen.
+
+Changelog 1.0.1.0:
+- fix für ladefehler bei bestimmten Map Änderungen
 ]]></de>
 		<en><![CDATA[If the mapper had other plans than you, stop making adjustments directly in the map and hide what bothers you.
 
@@ -48,6 +51,9 @@ But be careful!
 - If a mod map is not built correctly, removing some trees can cause the above problem.
 - If buildings are not defined correctly in the map, this can lead to funny effects.
 - It is possible to hide Map boarders. You could fall into nirvana then. Should not be done.
+
+Changelog 1.0.1.0:
+- fix for loading errors with certain map changes
 ]]></en>
 	</description>
 	
