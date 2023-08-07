@@ -1,2 +1,2 @@
 "C:\Program Files\7-Zip\7z.exe" a -tzip "E:\LS22Profile\LS22ModTest\mods\FS22_MapObjectsHider.zip" -x@FileDefinition.txt
-"E:\Program Files (x86)\Farming Simulator 2022\FarmingSimulator2022.exe" -autoStartSavegameId 2 -cheats -profile E:\LS22Profile\LS22ModTest -devWarning
+start "" "C:\Program Files (x86)\Farming Simulator 2022\x64\FarmingSimulator2022Game.exe" -autoStartSavegameId 2 -cheats -profile E:\LS22Profile\LS22ModTest -devWarning
