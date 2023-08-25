@@ -3,3 +3,4 @@
 .git*
 images
 FS19_MapObjectsHider
+*.md
