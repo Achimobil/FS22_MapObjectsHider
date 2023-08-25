@@ -264,6 +264,7 @@ end
 ---@return integer | nil
 ---@return string
 function MapObjectsHider:getRealHideObject(objectId)
+	MapObjectsHider.print("MapObjectsHider:getRealHideObject(%s)", objectId)
 	-- local amo = self.animatedMapObjectCollisions[objectId]
 	-- if amo ~= nil then
 		-- return amo.mapObjectsHider.rootNode, getName(amo.mapObjectsHider.rootNode)
@@ -272,11 +273,13 @@ function MapObjectsHider:getRealHideObject(objectId)
 	-- try to intercept big sized objects with LOD such as houses
 	if getName(getParent(objectId)) == "LOD0" or getName(getParent(objectId)) == "LOD1" then
 		local rootNode = getParent(getParent(objectId))
+		MapObjectsHider.print("MapObjectsHider:getRealHideObject - found LOD0/1 as parent")
 		return rootNode, getName(rootNode)
 	end
 	
 	if getName(objectId) == "LOD0" or getName(objectId) == "LOD1" then
 		local rootNode = getParent(objectId)
+		MapObjectsHider.print("MapObjectsHider:getRealHideObject - found LOD0/1 as itself")
 		return rootNode, getName(rootNode)
 	end
 	
@@ -285,6 +288,7 @@ function MapObjectsHider:getRealHideObject(objectId)
 	
 	if getIsLockedGroup(getParent(parent)) then
 		local rootNode = getParent(parent)
+		MapObjectsHider.print("MapObjectsHider:getRealHideObject - getIsLockedGroup")
 		return rootNode, getName(rootNode)
 	end
 
@@ -292,7 +296,8 @@ function MapObjectsHider:getRealHideObject(objectId)
 	local id = nil
 
 	-- try to intercept medium sized objects such as electric cabins
-	if getNumOfChildren(objectId) <= 8 then
+	-- check only when current and parent has 8 or less childs to avoid decoration groups
+	if getNumOfChildren(objectId) <= 8 and getNumOfChildren(parent) <= 8 then
 		EntityUtility.queryNodeHierarchy(
 			parent,
 			function(_, nodeName, depth)
@@ -305,6 +310,7 @@ function MapObjectsHider:getRealHideObject(objectId)
 			end
 		)
 		if id ~= nil then
+			MapObjectsHider.print("MapObjectsHider:getRealHideObject - object and parent with <= 8 childs with %s, %s", id, name)
 			return id, name
 		end
 	end
@@ -321,6 +327,7 @@ function MapObjectsHider:getRealHideObject(objectId)
 			return true
 		end
 	)
+	MapObjectsHider.print("MapObjectsHider:getRealHideObject - last return")
 	return id, name
 end
 
