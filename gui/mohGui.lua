@@ -197,7 +197,12 @@ end
 
 function MOHGui:hideLastHiddenObject()
     if self.lastSelectedHiddenObject ~= nil then
-        setVisibility(self.lastSelectedHiddenObject.id, false)
+		
+-- print("self.lastSelectedHiddenObject")
+-- DebugUtil.printTableRecursively(self.lastSelectedHiddenObject,"_",0,2)
+		if not self.lastSelectedHiddenObject.onlyDecollide then
+			setVisibility(self.lastSelectedHiddenObject.id, false)
+		end
         EntityUtility.queryNodeHierarchy(
             self.lastSelectedHiddenObject.id,
             ---@param node integer

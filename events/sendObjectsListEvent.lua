@@ -37,7 +37,8 @@ function SendObjectsListEvent.new(hiddenObjects)
             name = "",
             datetime = "",
             timestamp = ho.timestamp,
-            player = ho.player
+            player = ho.player,
+            onlyDecollide = ho.onlyDecollide
         }
         table.insert(o.hiddenObjects, pho)
     end
@@ -51,6 +52,7 @@ function SendObjectsListEvent:writeStream(streamId, _)
         streamWriteString(streamId, ho.index)
         streamWriteString(streamId, ho.player)
         streamWriteUIntN(streamId, ho.timestamp, 28)
+        streamWriteBool(streamId, ho.onlyDecollide)
     end
 end
 
@@ -63,6 +65,7 @@ function SendObjectsListEvent:readStream(streamId, connection)
         local ho = {index = streamReadString(streamId)}
         ho.player = streamReadString(streamId)
         ho.timestamp = streamReadUIntN(streamId, 28)
+        ho.onlyDecollide = streamReadBool(streamId)
         table.insert(self.hiddenObjects, ho)
     end
     self:run(connection)
