@@ -2,7 +2,7 @@
 <modDesc descVersion="77">
 	<author>Achimobil</author>
 	<contributor>Royal Modding</contributor>
-	<version>1.0.1.2</version>
+	<version>1.0.1.3</version>
 	
 	<title>
 		<en>Map Objects Hider</en>
@@ -30,7 +30,9 @@ Aber Vorsicht!
 - Wenn Gebäude in der Map nicht korrekt definiert sind, so kann dies zu lustigen Effekten führen.
 - Es ist möglich Mapränder auszublenden. Hierdurch kann man dann ins Bodenlose fallen. Sollte man nicht machen.
 
-Changelog 
+Changelog GitHub
+1.0.1.3:
+- Unnütze Dateien entfernt
 1.0.1.2: 
 - Fix für Fehler im Menü, welches beim schließen alle Objekte, wo nur Kollisionen entfernt waren, komplett ausgeblendet wurden bis zum neustart.
 - CZ übersetzungen hinzugefügt
@@ -59,10 +61,16 @@ But be careful!
 - If buildings are not defined correctly in the map, this can lead to funny effects.
 - It is possible to hide Map boarders. You could fall into nirvana then. Should not be done.
 
-Changelog 
-1.0.1.2: Fix for bug in menu, which when closing all objects, where only collisions were removed, were completely hidden until restart.
-1.0.1.1: Fix for very large groups to hide them completely (Landersum)
-1.0.1.0: Fix for loading errors with certain map changes
+Changelog GitHub
+1.0.1.3:
+- Removed useless files
+1.0.1.2: 
+- Fix for bug in menu that when closing all objects where only collisions were removed were completely hidden until restart.
+- CZ translations added
+1.0.1.1: 
+- Fix for very large groups to hide them completely (Landersum)
+1.0.1.0: 
+- Fix for loading errors with certain map changes
 ]]></en>
 	</description>
 	
