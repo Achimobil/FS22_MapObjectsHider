@@ -47,11 +47,23 @@ end
 
 ---@param connection Connection
 function HideDecollideNodeEvent:run(connection)
+	if self.objectIndex == nil then
+		MapObjectsHider.info("Get nil in HideDecollideNodeEvent. Skip running.");
+		return;
+	end
+	
     if g_server == nil then
+		local nodeId = EntityUtility.indexToNode(self.objectIndex, MapObjectsHider.mapNode)
+		
+		if nodeId == nil then
+			MapObjectsHider.info("Get nil in HideDecollideNodeEvent as nodeId. Skip running.");
+			return;
+		end
+		
         if self.hide then
-            MapObjectsHider:hideNode(EntityUtility.indexToNode(self.objectIndex, MapObjectsHider.mapNode))
+            MapObjectsHider:hideNode(nodeId)
         else
-            MapObjectsHider:decollideNode(EntityUtility.indexToNode(self.objectIndex, MapObjectsHider.mapNode))
+            MapObjectsHider:decollideNode(nodeId)
         end
     end
 end
@@ -59,6 +71,11 @@ end
 ---@param objectIndex string
 ---@param hide boolean
 function HideDecollideNodeEvent.sendToClients(objectIndex, hide)
+	if objectIndex == nil then
+		MapObjectsHider.info("Get nil for HideDecollideNodeEvent. Skip sending.");
+		return;
+	end
+	
     if g_server ~= nil then
         g_server:broadcastEvent(HideDecollideNodeEvent.new(objectIndex, hide))
     end

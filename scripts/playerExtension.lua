@@ -51,7 +51,7 @@ function PlayerExtension.new(isServer, isClient)
 		text = g_i18n:getText("moh_MAP_OBJECT_HIDER_GUI"),
 		textVisibility = true
 	}
-	Logging.info("PlayerExtension new called")
+	--Logging.info("PlayerExtension new called")
 	return self
 end
 

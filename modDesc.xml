@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<modDesc descVersion="77">
+<modDesc descVersion="79">
 	<author>Achimobil</author>
 	<contributor>Royal Modding</contributor>
-	<version>1.0.2.0</version>
+	<version>1.0.2.1</version>
 	
 	<title>
 		<en>Map Objects Hider</en>
@@ -30,7 +30,9 @@ Aber Vorsicht!
 - Wenn Gebäude in der Map nicht korrekt definiert sind, so kann dies zu lustigen Effekten führen.
 - Es ist möglich Mapränder auszublenden. Hierdurch kann man dann ins Bodenlose fallen. Sollte man nicht machen.
 
-Changelog GitHub
+Changelog
+1.0.2.1 - Ein paar Fehler unterbunden wenn nodes nicht ausgelesen werden können.
+
 1.0.2.0:
 - Fix für Fehler im Menü, welches beim schließen alle Objekte, wo nur Kollisionen entfernt waren, komplett ausgeblendet wurden bis zum neustart.
 - CZ übersetzungen hinzugefügt

@@ -22,7 +22,7 @@ MapObjectsHider.metadata = {
 	name = "MapObjectsHider",
 	modName = "FS22_MapObjectsHider",
 	currentModName = g_currentModName,
-	version = "0.3.1.3",
+	version = "0.3.2.1",
 	author = "Achimobil",
 	info = "Das verändern und wiederöffentlichen, auch in Teilen, ist untersagt und wird abgemahnt."
 };
@@ -37,6 +37,14 @@ MapObjectsHider.guiShowHelpEnabled = true
 MapObjectsHider.hiddenObjects = {}
 MapObjectsHider.directory = g_currentModDirectory
 
+function MapObjectsHider.info(infoMessage, ...)
+	Logging.info(MapObjectsHider.metadata.currentModName .. " - " .. infoMessage, ...);
+end
+
+function MapObjectsHider.devInfo(infoMessage, ...)
+	Logging.devInfo(MapObjectsHider.metadata.currentModName .. " - " .. infoMessage, ...);
+end
+
 function MapObjectsHider.print(text, ...)
 	if MapObjectsHider.debug then
 		print(string.format("MapObjectsHider DEBUG: %s", string.format(text, ...)))
@@ -49,7 +57,7 @@ function MapObjectsHider:init()
 		Logging.error("%s is illigal version of %s. Please load original", self.metadata.currentModName, self.metadata.modName);
 		return;
 	end
-	Logging.info("%s - init (Version: %s)", self.metadata.name, self.metadata.version)
+	MapObjectsHider.info("init %s(Version: %s)", self.metadata.name, self.metadata.version);
 	
 	-- Bind PlayerExtension
 	-- alte funktion speichern, da keine Klassenfunktion
@@ -460,6 +468,11 @@ end
 
 ---@param nodeId integer
 function MapObjectsHider:decollideNode(nodeId)
+	if nodeId == nil then
+		MapObjectsHider.info("Get nil on decollideNode. Prevent executing");
+		return;
+	end
+	
 	setRigidBodyType(nodeId, RigidBodyType.NONE)
 end
 
